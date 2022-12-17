@@ -1,0 +1,28 @@
+{
+  "name": "social-network-api",
+  "version": "1.0.0",
+  "description": "API for a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list. Built with Express.js for routing, a MongoDB database, and the Mongoose ODM.",
+  "main": "server.js",
+  "scripts": {
+    "test": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GEEZEE91/Social-Network-API.git"
+  },
+  "author": "Gina Zivkovic",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GEEZEE91/Social-Network-API/issues"
+  },
+  "homepage": "https://github.com/GEEZEE91/Social-Network-API#readme",
+  "keywords": [],
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^6.0.13"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.9"
+  }
+}
