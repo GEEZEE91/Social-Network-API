@@ -1,7 +1,7 @@
 const { Schema, model, Types } = require('mongoose');
 const moment = require('moment');
 
-// reactions cchema
+// reactions schema
 const reactionSchema = new Schema(
     {
         reactionId: {
@@ -29,7 +29,7 @@ const reactionSchema = new Schema(
       },
     }
   );
-  
+
 // thought schema
 const thoughtsSchema = new Schema(
   {

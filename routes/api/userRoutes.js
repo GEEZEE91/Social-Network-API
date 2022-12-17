@@ -3,10 +3,8 @@ const router = require('express').Router();
 //  usersController
 const {
     getUsers, createUser,
-
     getSingleUser, updateUser, deleteUser,
-    
-    addFriend, removeFriend,
+    addFriend, removeFriend
   } = require('../../controllers/usersController');
 
 // api/users 
