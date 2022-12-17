@@ -1,34 +1,71 @@
-const { Schema, Types } = require('mongoose');
+const { Schema, model, Types } = require('mongoose');
+const moment = require('moment');
 
-const assignmentSchema = new Schema(
+// reactions cchema
+const reactionSchema = new Schema(
+    {
+        reactionId: {
+        type: Schema.Types.ObjectId,
+        default: () => new Types.ObjectId(),
+      },
+      reactionBody: {
+        type: String,
+        required: true,
+        maxLength: 280
+      },
+      username: {
+        type: String,
+        required: true,
+      },
+      createdAt: {
+        type: Date,
+        default: Date.now,
+        get: (createdTimeVal) => moment(createdTimeVal).format('DD MMM, YYYY [at] hh:mm a')
+      },
+    },
+    {
+      toJSON: {
+        getters: true,
+      },
+    }
+  );
+  
+// thought schema
+const thoughtsSchema = new Schema(
   {
-    assignmentId: {
-      type: Schema.Types.ObjectId,
-      default: () => new Types.ObjectId(),
-    },
-    assignmentName: {
-      type: String,
-      required: true,
-      maxlength: 50,
-      minlength: 4,
-      default: 'Unnamed assignment',
-    },
-    score: {
-      type: Number,
-      required: true,
-      default: () => Math.floor(Math.random() * (100 - 70 + 1) + 70),
+    thoughtText: {
+        type: String,
+        required: true,
+        maxLength: 280,
+        minLength: 1
     },
     createdAt: {
       type: Date,
       default: Date.now,
+      get: (createdTimeVal) => moment(createdTimeVal).format('DD MMM, YYYY [at] hh:mm a')
     },
+    username : {
+        type: String,
+        required: true,
+    },
+    reactions :[reactionSchema],
+    
   },
   {
     toJSON: {
       getters: true,
+      virtuals: true,
     },
     id: false,
   }
 );
 
-module.exports = assignmentSchema;
+
+
+// get total count of reactions
+  thoughtsSchema.virtual('reactionCount').get(function () {return this.reactions.length;});
+
+// create the thoughts model
+  const Thoughts = model('Thoughts', thoughtsSchema);
+
+  module.exports = Thoughts;
